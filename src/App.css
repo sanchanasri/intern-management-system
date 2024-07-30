@@ -1,38 +1,244 @@
-.App {
-  text-align: center;
+html {
+  font-size: 13px; 
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-size: 1rem;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app-container {
   display: flex;
   flex-direction: column;
+  min-height: 100vh; /* Ensure full height of the viewport */
+}
+.content {
+  flex: 1; /* Grow to fill remaining space */
+  padding: 20px; /* Example padding */
+}
+/* Example styles for Footer */
+footer {
+  width: 100%;
+  background-color: #E8EAF7;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-top: auto; /* Push footer to the bottom */
+  text-align: center; /* Center text content */
+}
+.manage-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.manage-card {
+  flex: 1 1 calc(25% - 16px);
+  margin: 8px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+.area {
+  background: white;  
+  width: 200px;
+  height: 100vh;
+}
+
+.circles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.circles li {
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  animation: animate 25s linear infinite;
+  bottom: -150px;
+}
+
+.circles li:nth-child(1) {
+  left: 25%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
+  background: #FFDFD6;
+}
+
+.circles li:nth-child(2) {
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 2s;
+  animation-duration: 12s;
+  background: #E3A5C7;
+}
+
+.circles li:nth-child(3) {
+  left: 70%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 4s;
+  background: #B692C2;
+}
+
+.circles li:nth-child(4) {
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  animation-delay: 0s;
+  animation-duration: 18s;
+  background: #694F8E;
+}
+
+.circles li:nth-child(5) {
+  left: 65%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 0s;
+  background: #FFDFD6;
+}
+
+.circles li:nth-child(6) {
+  left: 75%;
+  width: 110px;
+  height: 110px;
+  animation-delay: 3s;
+  background: #E3A5C7;
+}
+
+.circles li:nth-child(7) {
+  left: 35%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 7s;
+  background: #B692C2;
+}
+.circles li:nth-child(8){
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+    background: #FFDFD6;
+}
+
+.circles li:nth-child(9){
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+    background: #B692C2;
+}
+
+.circles li:nth-child(10){
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+    background: #E3A5C7;
+}
+
+
+
+@keyframes animate {
+
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+
+}.unique-container {
+  position: relative;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex: 1 1 calc(25% - 16px); 
+  margin: 8px;
 }
 
-.App-link {
-  color: #61dafb;
+.unique-card {
+  width: 100%; /* Full width within the container */
+  height: 160px; /* Adjust as needed */
+  background-color: #fff;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  transition: 0.3s ease-in-out;
+  border-radius: 10px; /* Rounded corners */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Card hover effect */
+.unique-card:hover {
+  height: 200px; /* Adjust hover height */
+}
+
+/* Image styling */
+.unique-image {
+  width: 100%;
+  height: 145px; /* Adjust as needed */
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  margin-bottom: 10px; /* Bottom margin for spacing */
+  background-color: white;
+}
+
+.unique-image img {
+  width: 100%;
+  height: 125px; /* Ensure image covers container */
+  object-fit: cover; /* Maintain aspect ratio */
+}
+
+/* Content styling */
+.unique-content {
+  padding: 10px 15px; /* Adjusted padding */
+  color: #111;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.unique-card:hover .unique-content {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0.2s;
+}
+
+/* Responsive layout for manage cards */
+.manage-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16px;
+  gap: 16px; /* Space between cards */
+}
+
+/* Media query to handle different screen sizes */
+@media (max-width: 768px) {
+  .unique-container {
+    flex: 1 1 calc(50% - 16px); /* 2 cards per row on small screens */
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (max-width: 480px) {
+  .unique-container {
+    flex: 1 1 100%; /* 1 card per row on extra small screens */
   }
 }
