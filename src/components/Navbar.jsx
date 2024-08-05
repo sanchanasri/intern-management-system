@@ -29,6 +29,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import SchoolIcon from '@mui/icons-material/School';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 const drawerWidth = 215;
 
 const openedMixin = (theme) => ({
@@ -126,7 +127,7 @@ export default function Sidebar() {
     <div>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="fixed" open={open} sx={{background: 'linear-gradient(90deg, #D6D0E8, #DAE9F5, #D6D0E8)',}}>
+        <AppBar position="fixed" open={open} sx={{ background: 'linear-gradient(90deg, #D6D0E8, #DAE9F5, #D6D0E8)', }}>
           <Toolbar>
             <IconButton
               color="inherit"
@@ -158,6 +159,7 @@ export default function Sidebar() {
                 height={40}
                 style={{ marginRight: '8px' }}
               />
+
               <Typography
                 variant="h4"
                 noWrap
@@ -169,10 +171,14 @@ export default function Sidebar() {
                   fontWeight: 'bold',
                   display: 'flex',
                   alignItems: 'center',
+                  whiteSpace: 'normal', // Allow text to wrap
+                  wordWrap: 'break-word', // Break long words
+                 
                 }}
               >
-                PINESPHERE
+                PINESPHERE INTERNSHIP PORTAL
               </Typography>
+
             </Box>
           </Toolbar>
         </AppBar>
@@ -208,8 +214,8 @@ export default function Sidebar() {
                       transition: 'transform 0.3s', // Smooth transition
                     },
                     '&:hover .MuiListItemIcon-root': {
-                        transform: 'translateX(8px)', // Move icon to the right
-                      },
+                      transform: 'translateX(8px)', // Move icon to the right
+                    },
                   },
                 }}
               >
@@ -224,27 +230,33 @@ export default function Sidebar() {
               </ListItemButton>
               <Collapse in={formsOpen} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton component={Link} to="/add_student" sx={{ pl: 4, color: 'white' ,'&:hover': {
-                    backgroundColor: '#959595', 
-                    '& .MuiListItemIcon-root': {
-                      transition: 'transform 0.3s', // Smooth transition
-                    },
-                    '&:hover .MuiListItemIcon-root': {
+                  <ListItemButton component={Link} to="/add_student" sx={{
+                    pl: 4, color: 'white', '&:hover': {
+                      backgroundColor: '#959595',
+                      '& .MuiListItemIcon-root': {
+                        transition: 'transform 0.3s', // Smooth transition
+                      },
+                      '&:hover .MuiListItemIcon-root': {
                         transform: 'translateX(8px)', // Move icon to the right
-                      },}}}>
+                      },
+                    }
+                  }}>
                     <ListItemIcon>
                       <PersonIcon sx={{ color: 'white' }} />
                     </ListItemIcon>
                     <ListItemText primary="Add Students" />
                   </ListItemButton>
-                  <ListItemButton component={Link} to="/add_other" sx={{ pl: 4, color: 'white' ,'&:hover': {
-                    backgroundColor: '#959595', 
-                    '& .MuiListItemIcon-root': {
-                      transition: 'transform 0.3s', // Smooth transition
-                    },
-                    '&:hover .MuiListItemIcon-root': {
+                  <ListItemButton component={Link} to="/add_other" sx={{
+                    pl: 4, color: 'white', '&:hover': {
+                      backgroundColor: '#959595',
+                      '& .MuiListItemIcon-root': {
+                        transition: 'transform 0.3s', // Smooth transition
+                      },
+                      '&:hover .MuiListItemIcon-root': {
                         transform: 'translateX(8px)', // Move icon to the right
-                      },}}}>
+                      },
+                    }
+                  }}>
                     <ListItemIcon>
                       <SchoolIcon sx={{ color: 'white' }} />
                     </ListItemIcon>
@@ -253,16 +265,33 @@ export default function Sidebar() {
                 </List>
               </Collapse>
 
+              <ListItemButton component={Link} to="/add_user" sx={{
+                '&:hover': {
+                  backgroundColor: '#959595',
+                },
+                '& .MuiListItemIcon-root': {
+                  transition: 'transform 0.3s', // Smooth transition
+                },
+                '&:hover .MuiListItemIcon-root': {
+                  transform: 'translateX(8px)', // Move icon to the right
+                },
+              }}>
+                <ListItemIcon>
+                  <PersonAddAltIcon sx={{ color: 'white' }} />
+                </ListItemIcon>
+                <ListItemText primary="Add Super User" sx={{ color: 'white' }} />
+              </ListItemButton>
+
               <ListItemButton component={Link} to="/manage" sx={{
                 '&:hover': {
                   backgroundColor: '#959595',
                 },
                 '& .MuiListItemIcon-root': {
-                      transition: 'transform 0.3s', // Smooth transition
-                 },
-                 '&:hover .MuiListItemIcon-root': {
-                      transform: 'translateX(8px)', // Move icon to the right
-                 },
+                  transition: 'transform 0.3s', // Smooth transition
+                },
+                '&:hover .MuiListItemIcon-root': {
+                  transform: 'translateX(8px)', // Move icon to the right
+                },
               }}>
                 <ListItemIcon>
                   <WorkIcon sx={{ color: 'white' }} />
@@ -270,16 +299,17 @@ export default function Sidebar() {
                 <ListItemText primary="Manage Users" sx={{ color: 'white' }} />
               </ListItemButton>
 
+
               <ListItemButton component={Link} to="/qr_scanner" sx={{
                 '&:hover': {
                   backgroundColor: '#959595',
                 },
                 '& .MuiListItemIcon-root': {
-                      transition: 'transform 0.3s', // Smooth transition
-                    },
-                    '&:hover .MuiListItemIcon-root': {
-                        transform: 'translateX(8px)', // Move icon to the right
-                      },
+                  transition: 'transform 0.3s', // Smooth transition
+                },
+                '&:hover .MuiListItemIcon-root': {
+                  transform: 'translateX(8px)', // Move icon to the right
+                },
               }}>
                 <ListItemIcon>
                   <QRCodeIcon sx={{ color: 'white' }} />
@@ -295,11 +325,11 @@ export default function Sidebar() {
                     backgroundColor: '#959595',
                   },
                   '& .MuiListItemIcon-root': {
-                      transition: 'transform 0.3s', // Smooth transition
-                    },
-                    '&:hover .MuiListItemIcon-root': {
-                        transform: 'translateX(8px)', // Move icon to the right
-                      },
+                    transition: 'transform 0.3s', // Smooth transition
+                  },
+                  '&:hover .MuiListItemIcon-root': {
+                    transform: 'translateX(8px)', // Move icon to the right
+                  },
                 }}
               >
                 <ListItemIcon>
@@ -310,27 +340,33 @@ export default function Sidebar() {
               </ListItemButton>
               <Collapse in={attendanceReportsOpen} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton component={Link} to="/student_attendance" sx={{ pl: 4, color: 'white' ,'&:hover': {
-                    backgroundColor: '#959595', 
-                    '& .MuiListItemIcon-root': {
-                      transition: 'transform 0.3s', // Smooth transition
-                    },
-                    '&:hover .MuiListItemIcon-root': {
+                  <ListItemButton component={Link} to="/student_attendance" sx={{
+                    pl: 4, color: 'white', '&:hover': {
+                      backgroundColor: '#959595',
+                      '& .MuiListItemIcon-root': {
+                        transition: 'transform 0.3s', // Smooth transition
+                      },
+                      '&:hover .MuiListItemIcon-root': {
                         transform: 'translateX(8px)', // Move icon to the right
-                      },} }}>
+                      },
+                    }
+                  }}>
                     <ListItemIcon sx={{ color: 'white' }}>
                       <BorderColorIcon />
                     </ListItemIcon>
                     <ListItemText primary="Student Attendance" />
                   </ListItemButton>
-                  <ListItemButton component={Link} to="/reports" sx={{ pl: 4, color: 'white','&:hover': {
-                    backgroundColor: '#959595', 
-                    '& .MuiListItemIcon-root': {
-                      transition: 'transform 0.3s', // Smooth transition
-                    },
-                    '&:hover .MuiListItemIcon-root': {
+                  <ListItemButton component={Link} to="/reports" sx={{
+                    pl: 4, color: 'white', '&:hover': {
+                      backgroundColor: '#959595',
+                      '& .MuiListItemIcon-root': {
+                        transition: 'transform 0.3s', // Smooth transition
+                      },
+                      '&:hover .MuiListItemIcon-root': {
                         transform: 'translateX(8px)', // Move icon to the right
-                      },} }}>
+                      },
+                    }
+                  }}>
                     <ListItemIcon>
                       <SummarizeIcon sx={{ color: 'white' }} />
                     </ListItemIcon>
@@ -355,7 +391,7 @@ export default function Sidebar() {
 
                   <ListItemButton
                     component={Link}
-                    to="/log_in"  
+                    to="/log_in"
                     sx={{
                       '&:hover': {
                         backgroundColor: '#959595',

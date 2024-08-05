@@ -1,9 +1,42 @@
+
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
 html {
-  font-size: 13px; 
+  font-size: 13px;
 }
+
 body {
   font-size: 1rem;
 }
+
+@media (max-width: 600px) {
+  html {
+    font-size: 7px; 
+  }
+  body {
+    font-size: 0.7rem; 
+  }
+}
+
+@media (min-width: 600px) and (max-width: 960px) {
+  html {
+    font-size: 11px; 
+  }
+  body {
+    font-size: 0.9rem; 
+  }
+}
+
+@media (min-width: 960px) {
+  html {
+    font-size: 13px; 
+  }
+  body {
+    font-size: 1rem;
+  }
+}
+
 .app-container {
   display: flex;
   flex-direction: column;
@@ -42,8 +75,8 @@ footer {
 
 .area {
   background: white;  
-  width: 200px;
-  height: 100vh;
+  width: '100%';
+  height: '100%';
 }
 
 .circles {
@@ -230,7 +263,6 @@ footer {
   gap: 16px; /* Space between cards */
 }
 
-/* Media query to handle different screen sizes */
 @media (max-width: 768px) {
   .unique-container {
     flex: 1 1 calc(50% - 16px); /* 2 cards per row on small screens */
@@ -242,3 +274,26 @@ footer {
     flex: 1 1 100%; /* 1 card per row on extra small screens */
   }
 }
+.footer-text {
+  font-size: calc(1rem + 0.5vw);
+}
+
+.container-wrapper::-webkit-scrollbar {
+    height: 8px; /* Height of the scrollbar */
+}
+
+.container-wrapper::-webkit-scrollbar-track {
+    background: #FFA9F6; /* Background of the scrollbar track */
+    border-radius: 10px;
+}
+
+.container-wrapper::-webkit-scrollbar-thumb {
+    background-color: #81399A; /* Color of the scrollbar thumb */
+    border-radius: 10px;
+    border: 2px solid #FFA9F6; /* Padding around thumb */
+}
+
+.container-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #81399A; /* Color of the scrollbar thumb on hover */
+}
+

@@ -13,8 +13,6 @@ import College from '../assets/College.png';
 import Course from '../assets/Course.png';
 import Internship from '../assets/Internship.png';
 
-
-
 const AddOther = () => {
   const [showForm, setShowForm] = useState('trainers');
   const [trainerData, setTrainerData] = useState({ trainerName: '', assignedCourse: '' });
@@ -54,15 +52,15 @@ const AddOther = () => {
   };
 
   const toggleForm = (formType) => {
-    setShowForm(formType);
+    setShowForm(formType.toLowerCase());
   };
 
   return (
     <Box sx={{ display: 'flex', height: '100vh', marginTop: '50px' }}>
       <Sidebar />
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', p: 2 }}>
-      <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', mb: 2 }}>
-          {['Trainers', 'College', 'Course', 'Internship'].map((item, index) => (
+        <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', mb: 2 }}>
+          {['Trainers', 'College', 'Course', 'Internship'].map((item) => (
             <Box
               key={item}
               onClick={() => toggleForm(item)}
@@ -76,66 +74,64 @@ const AddOther = () => {
                 cursor: 'pointer',
               }}
             >
-                <Box
-              sx={{
-              width: '100%',
-              height: '70%',
-              backgroundColor: ['#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9'][index],
-              padding: '10px',
-              display: 'flex',
-              flexDirection: 'column',
-              boxShadow: '0 3px 10px rgba(0,0,0,0.3)',
-              transition: '0.3s ease-in-out',
-              borderRadius: '10px',
-              '&:hover': {
-                height: '200px',
-                '& .text-overlay': {
-                  visibility: 'visible',
-                  opacity: 1,
-                },
-              },
-            }}
-          >
-            <Box
-              sx={{
-                width: '100%',
-                height: '145px',
-                boxShadow: '0 3px 10px rgba(0,0,0,0.2)',
-                marginBottom: '10px',
-                backgroundColor: 'white',
-              }}
-            >
-              <img
-                src={[Trainer, College, Course, Internship][index]}
-                alt={item.charAt(0).toUpperCase() + item.slice(1)}
-                style={{
+              <Box
+                sx={{
                   width: '100%',
-                  height: '125px',
-                  objectFit: 'cover',
+                  height: '70%',
+                  backgroundColor: ['#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9'][['Trainers', 'College', 'Course', 'Internship'].indexOf(item)],
+                  padding: '10px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  boxShadow: '0 3px 10px rgba(0,0,0,0.3)',
+                  transition: '0.3s ease-in-out',
+                  borderRadius: '10px',
+                  '&:hover': {
+                    height: '200px',
+                    '& .text-overlay': {
+                      visibility: 'visible',
+                      opacity: 1,
+                    },
+                  },
                 }}
-              />
-            </Box>
-            <Box
-              className="text-overlay"
-              sx={{
-                padding: '10px 15px',
-                color: '#111',
-                textAlign: 'center',
-                visibility: 'hidden',
-                opacity: 0,
-                transition: '0.3s ease-in-out',
-              }}
-            >
-              <Typography variant="h6" sx={{ color: 'black' }}>
-                {item}
-              </Typography>
-            </Box>
-          </Box>
-
+              >
+                <Box
+                  sx={{
+                    width: '100%',
+                    height: '145px',
+                    boxShadow: '0 3px 10px rgba(0,0,0,0.2)',
+                    marginBottom: '10px',
+                    backgroundColor: 'white',
+                  }}
+                >
+                  <img
+                    src={[Trainer, College, Course, Internship][['Trainers', 'College', 'Course', 'Internship'].indexOf(item)]}
+                    alt={item}
+                    style={{
+                      width: '100%',
+                      height: '125px',
+                      objectFit: 'cover',
+                    }}
+                  />
+                </Box>
+                <Box
+                  className="text-overlay"
+                  sx={{
+                    padding: '10px 15px',
+                    color: '#111',
+                    textAlign: 'center',
+                    visibility: 'hidden',
+                    opacity: 0,
+                    transition: '0.3s ease-in-out',
+                  }}
+                >
+                  <Typography variant="h6" sx={{ color: 'black' }}>
+                    {item}
+                  </Typography>
+                </Box>
+              </Box>
             </Box>
           ))}
         </Box>
-
 
         <Box sx={{ width: '60%' }}>
           <Collapse in={showForm === 'trainers'}>
@@ -306,7 +302,6 @@ const AddOther = () => {
               </form>
             </Box>
           </Collapse>
-
         </Box>
       </Box>
 

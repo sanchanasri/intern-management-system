@@ -10,6 +10,11 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from '@mui/material';
 import Course from '../assets/Courses.png'
 import Internship from '../assets/Internships.png'
+import {  Container, Grid } from '@material-ui/core';
+import CourseCarousel from './DetailsCaroussel';
+import CardSlider from './DetailsCaroussel';
+import CourseContainer from './DetailsCaroussel';
+import DetailsContainer from './DetailsCaroussel';
 
 
 const StyledCard = styled(Paper)(({ theme }) => ({
@@ -21,17 +26,22 @@ const StyledCard = styled(Paper)(({ theme }) => ({
 }));
 
 const MainContent = styled('main')(({ theme }) => ({
-  flexGrow: 1,
+  width:'100vw',
+  overflowX: 'hidden',
+  overflowY: 'hidden',
   padding: theme.spacing(3),
   marginLeft: drawerWidth,
-  marginTop: 60
+  marginTop: 60,
+  [theme.breakpoints.down('sm')]: {
+    padding: theme.spacing(1),
+    marginLeft: 0,
+  },
 }));
 
 
 const drawerWidth = 0;
 
 const Home = () => {
-  const text = "INTERN MANAGEMENT SYSTEM".split("");
   const cardsData = [
     { title: 'Total', number: 15, bg: '#74CCE8' },
     { title: 'Completers', number: 10, bg: '#F7DB70' },
@@ -44,7 +54,7 @@ const Home = () => {
     { title: 'Non-Completers', number: 5, bg: '#D1DCE2' },
   ];
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex' ,alignItems: 'center' }}>
       <Box
         sx={{
           position: 'absolute',
@@ -74,37 +84,22 @@ const Home = () => {
       <Sidebar />
 
       <MainContent>
+        <StyledCard>
         <Typography
           variant="h4"
+
           sx={{
             fontWeight: 'bold',
-            color: '#368FCE', // Pastel grey color
-            textAlign: 'center',
+            color: '#DC9E0B',
             width: '100%',
-            fontFamily: 'Arial, sans-serif', // Change the font family
-            fontSize: '2rem', // Change the font size
           }}
         >
-          {text.map((el, i) => (
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{
-                duration: 4,
-                delay: i / 10,
-              }}
-              key={i}
-            >
-              {el}{""}
-            </motion.span>
-          ))}
+          Welcome, Admin
         </Typography>
-        <StyledCard>
-          <h2>Welcome, Admin</h2>
           <CollegesCard />
         </StyledCard>
 
-        <Box sx={{ backgroundColor: '#', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '70px' }}>
+        <Box sx={{ backgroundColor: '#', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '70px' ,flexDirection: { xs: 'column', md: 'row' },}}>
           <Box sx={{ display: 'flex', flexDirection: 'column', height: '60vh', padding: 2, alignItems: 'center', justifyContent: 'center', border: '10px' }}>
             <Card sx={{ marginBottom: 2, width: '300px', height: '70px', border: 'none', boxShadow: 'none', display: 'flex', padding: 1 }}>
               <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%',flex: 1 }}>
@@ -115,11 +110,11 @@ const Home = () => {
               </CardContent>
             </Card>
 
-            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '250px' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '75%' }}>
               {coursecardsData.map((card, index) => (
                 <motion.div
                   className="card"
-                  initial={{ opacity: 0.3, x: -300 }}
+                  initial={{ opacity: 0.3, x: -100 }}
                   whileInView={{ opacity: 1, x: 0, transition: { duration: 1.5, delay: index * 0.2 } }}
                   viewport={{ once: true }}
                   key={index}
@@ -145,11 +140,11 @@ const Home = () => {
               </CardContent>
             </Card>
 
-            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '250px' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '75%' }}>
               {cardsData.map((card, index) => (
                 <motion.div
                   className="card"
-                  initial={{ opacity: 0.3, x: 300 }}
+                  initial={{ opacity: 0.3, x: 100 }}
                   whileInView={{ opacity: 1, x: 0, transition: { duration: 1.5, delay: index * 0.2 } }}
                   viewport={{ once: true }}
                   key={index}
@@ -165,6 +160,38 @@ const Home = () => {
             </Box>
           </Box>
         </Box>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+      <Typography 
+        variant="h4" 
+        sx={{ 
+          fontWeight: 'bold', 
+          color: '#368FCE', 
+          fontFamily: 'Arial, sans-serif', 
+          fontSize: '2rem',
+          mt:3,
+          mb:3
+        }}
+      >
+        INTERNSHIP DETAILS
+      </Typography>
+    </div>
+    <DetailsContainer color1="#DFE9F8" color2="#C77BFF" />
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+      <Typography 
+        variant="h4" 
+        sx={{ 
+          fontWeight: 'bold', 
+          color: '#368FCE', 
+          fontFamily: 'Arial, sans-serif', 
+          fontSize: '2rem',
+          mt:3,
+          mb:3
+        }}
+      >
+        COURSE DETAILS
+      </Typography>
+    </div>
+    <DetailsContainer color1="#F7E5E1" color2="#FF74BD" />
       </MainContent>
     </Box>
   );

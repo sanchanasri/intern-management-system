@@ -4,8 +4,11 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, Box } from '@mui/material';
 import "primeicons/primeicons.css";
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-// Function to lighten the color
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
+
 const lightenColor = (color, percent) => {
   const num = parseInt(color.replace("#", ""), 16),
         amt = Math.round(2.55 * percent),
@@ -21,9 +24,8 @@ const CardComponent = ({ iconClass, title, bgColor, number }) => {
   return (
     <Card
       sx={{
-        flex: '1 1 280px',
+        width: '300px', // Fixed width for cards
         backgroundColor: bgColor,
-        height: '150px',
         textAlign: 'center',
         boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.1)',
         transition: 'transform 0.3s ease-in-out',
@@ -37,8 +39,7 @@ const CardComponent = ({ iconClass, title, bgColor, number }) => {
       }}
     >
       <CardActionArea>
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: '1 1 220px', // Adjusted width for more rectangular shape
-        height: '75px',}}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '68px' }}>
           <Typography variant="body1" component="div" sx={{ fontSize: '60px' }}>
             <i className={iconClass} style={{ fontSize: '38px', color: bgColor }}></i>
           </Typography>
@@ -58,11 +59,18 @@ const CardComponent = ({ iconClass, title, bgColor, number }) => {
 
 export default function ActionAreaCard() {
   return (
-    <Box sx={{ display: 'flex', gap: '20px', justifyContent: 'center', backgroundColor: '#F5F5F5', padding: '20px' }}>
-      <CardComponent iconClass="pi pi-building-columns" title="Colleges" bgColor='#A69AC4' number={"15"} /> {/* Darker pastel purple */}
-      <CardComponent iconClass="pi pi-book" title="Courses" bgColor='#F17878' number={5} /> {/* Darker pastel blue */}
-      <CardComponent iconClass="pi pi-users" title="Students" bgColor='#81C784' number={50} /> {/* Darker pastel green */}
-      <CardComponent iconClass="pi pi-spinner-dotted" title=" Trainers" bgColor='#F7C952' number={"7"} /> {/* Darker pastel purple */}
+    <Box sx={{ 
+      display: 'flex', 
+      gap: '20px', 
+      justifyContent: 'center', 
+      backgroundColor: '#F5F5F5', 
+      padding: '20px', 
+      flexWrap: 'wrap', // Allow wrapping of cards
+      alignItems: 'flex-start' // Align items at the start of the container
+    }}>
+      <CardComponent iconClass="pi pi-book" title="Courses" bgColor='#F17878' number={5} />
+      <CardComponent iconClass="pi pi-users" title="Students" bgColor='#81C784' number={50} />
+      <CardComponent iconClass="pi pi-spinner-dotted" title="Internships" bgColor='#F7C952' number={"7"} />
     </Box>
   );
 }

@@ -18,6 +18,9 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Log_in from './components/LogIn';
 import Sign_up from './components/SignUp';
 import Internships from './components/Internships'
+import AddUser from './components/AddUser';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   return (
@@ -40,6 +43,7 @@ function App() {
         <Route path="/manage/internships" element={<Internships/>}/>
         <Route path="/sign_up" element={<Sign_up/>}/>
         <Route path="/log_in" element={<Log_in/>}/>
+        <Route path="/add_user" element={<AddUser/>}/>
       </Routes>
       </div>
       <Footer />

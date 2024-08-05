@@ -8,20 +8,24 @@ import MailIcon from '@mui/icons-material/Mail';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import successAnimation from '../assets/EmailSuccessAnimation.json'
 import Lottie from 'lottie-react';
-import {  Dialog, DialogContent, Typography,DialogTitle } from '@mui/material';
+import { Dialog, DialogContent, Typography, DialogTitle } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import {IconButton} from '@mui/material';
+import { IconButton } from '@mui/material';
+import TablePagination from '@mui/material/TablePagination';
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 
 
 const Reports = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [emailSuccess, setEmailSuccess]= useState(false);
+  const [formType, setFormType] = useState('internship');
+  const [emailSuccess, setEmailSuccess] = useState(false);
+
   const days = Array.from({ length: 30 }, (_, index) => index + 1);
   const students = [
     { id: 1, internId: 'INT001', name: 'John Doe', attendance: [true, false, true] },
     { id: 2, internId: 'INT002', name: 'Jane Smith', attendance: [false, false, true] },
-    // Add more students as needed, ensure each student has an 'attendance' array with boolean values
+    { id: 3, internId: 'INT003', name: 'Jaden Smith', attendance: [false, false, true] },
   ];
 
   const handleFilter = () => {
@@ -36,7 +40,7 @@ const Reports = () => {
   const handleClose = () => {
     setEmailSuccess(false);
   };
-  
+
   const renderDateHeaders = () => {
     return days.map(day => (
       <TableCell key={day}>Day {day}</TableCell>
@@ -47,61 +51,104 @@ const Reports = () => {
     <Box sx={{ display: 'flex', height: '100vh' }}>
       <Sidebar />
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', overflow: 'auto' }}>
-      <Typography
-              variant="h4"
-              sx={{
-                mb: -5,
-                mt:10,
-                fontWeight: 'bold',
-                color: '#DC9E0B',
-                textAlign: 'center',
-                width: '100%',
-              }}
-            >
-              REPORT
-            </Typography>
-        <Stack direction="row" spacing={2} sx={{ marginTop: '90px' }}>
-       
-          <Button 
-            variant="contained" 
+        <Typography
+          variant="h4"
+          sx={{
+            mt: 7,
+            fontWeight: 'bold',
+            color: '#DC9E0B',
+            textAlign: 'center',
+            width: '100%',
+            mb: 3
+          }}
+        >
+          <TextSnippetIcon sx={{ fontSize: '40px', mr: 2 }} />
+          REPORTS
+        </Typography>
+
+        <Box sx={{ display: 'flex', justifyContent: 'center', mb: 1 }}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setFormType('internship')}
             sx={{
-              backgroundColor: '#9A7CB0', 
-              color: 'white', 
+              mr: 1,
+              background: formType === 'internship' ? 'linear-gradient(to right, #FF6F61, #FFB6B6)' : 'linear-gradient(to right, #FFB6B6, #FF6F61)',
+              color: '#333',
+              border: formType === 'internship' ? '3px solid darkgrey' : 'none',
+              boxShadow: formType === 'internship' ? '0px 6px 12px rgba(0, 0, 0, 0.5)' : 'none',
+              borderRadius: '20px',
+              '&:hover': { background: 'white', color: '#FF6F61' },
+              fontSize: '1.2rem',
+              padding: '10px 20px',
+              transition: 'all 0.3s ease', // Smooth transition for hover and border changes
+            }}
+          >
+            Internship
+          </Button>
+
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setFormType('course')}
+            sx={{
+              background: formType === 'course' ? 'linear-gradient(to right, #FF6F61, #FFB6B6)' : 'linear-gradient(to right, #FFB6B6, #FF6F61)',
+              color: '#333',
+              border: formType === 'course' ? '3px solid darkgrey' : 'none',
+              boxShadow: formType === 'course' ? '0px 6px 12px rgba(0, 0, 0, 0.5)' : 'none',
+              borderRadius: '20px',
+              '&:hover': { background: 'white', color: '#FF6F61' },
+              fontSize: '1.2rem',
+              padding: '10px 20px',
+              transition: 'all 0.3s ease', // Smooth transition for hover and border changes
+            }}
+          >
+            Course
+          </Button>
+        </Box>
+
+        <Stack direction="row" spacing={2} sx={{ marginTop: '50px' }}>
+
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: '#9A7CB0',
+              color: 'white',
               '&:hover': {
-                backgroundColor: 'white', 
+                backgroundColor: 'white',
                 color: '#9A7CB0'
               }
-            }} 
-            onClick={() => {}}
+            }}
+            onClick={() => { }}
           >
             Download Excel
             <ListAltIcon />
           </Button>
-          <Button 
-            variant="contained" 
+          <Button
+            variant="contained"
             sx={{
-              backgroundColor: '#9A7CB0', 
-              color: 'white', 
+              backgroundColor: '#9A7CB0',
+              color: 'white',
               '&:hover': {
-                backgroundColor: 'white', 
+                backgroundColor: 'white',
                 color: '#9A7CB0'
               }
-            }} 
-            onClick={() => {}}
+            }}
+            onClick={() => { }}
           >
             Download PDF
             <PictureAsPdfIcon />
           </Button>
-          <Button 
-            variant="contained" 
+          <Button
+            variant="contained"
             sx={{
-              backgroundColor: '#9A7CB0', 
-              color: 'white', 
+              backgroundColor: '#9A7CB0',
+              color: 'white',
               '&:hover': {
-                backgroundColor: 'white', 
+                backgroundColor: 'white',
                 color: '#9A7CB0'
               }
-            }} 
+            }}
             onClick={handleEmailSuccess}
           >
             Send Email
@@ -129,16 +176,16 @@ const Reports = () => {
               shrink: true,
             }}
           />
-          <Button 
-            variant="contained" 
+          <Button
+            variant="contained"
             sx={{
-              backgroundColor: '#9A7CB0', 
-              color: 'white', 
+              backgroundColor: '#9A7CB0',
+              color: 'white',
               '&:hover': {
-                backgroundColor: 'white', 
+                backgroundColor: 'white',
                 color: '#9A7CB0'
               }
-            }} 
+            }}
             onClick={handleFilter}
           >
             Filter
@@ -180,12 +227,12 @@ const Reports = () => {
       <Dialog
         open={emailSuccess}
         sx={{
-          backdropFilter: 'blur(5px)', 
+          backdropFilter: 'blur(5px)',
         }}
         PaperProps={{
           style: {
-            backgroundColor: '#D9EBDA', 
-            borderRadius: '10px', 
+            backgroundColor: '#D9EBDA',
+            borderRadius: '10px',
           }
         }}
       >
@@ -201,9 +248,9 @@ const Reports = () => {
             <CloseIcon />
           </IconButton>
         </DialogTitle>
-        
+
         <DialogContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '350px' }}>
-        <Lottie
+          <Lottie
             animationData={successAnimation}
             style={{ width: 100, height: 100 }}
             loop={false} // Ensure the animation does not loop
